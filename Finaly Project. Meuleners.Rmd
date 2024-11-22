@@ -1,0 +1,46 @@
+---
+title: "Final Project- Meuleners"
+author: "Joleen Meuleners"
+date: "2024-11-17"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+```{r}
+library(ggplot2)
+library(readxl)
+library(tidyverse)
+```
+
+$H_0$: ${A}$ = ${B}$
+$H_a$: ${A}$ < ${B}$
+${A}$: Screentime on days worked
+${B}$: Screentime on days off
+```{r}
+Screentime <- read_excel("C:/Users/Joleen/OneDrive/Desktop/DATA 211/Meuleners Screentime.xlsx")
+
+
+Screentable<-table(Screentime$Screentime,Screentime$Worked)
+
+Screentable
+
+No<-c(95+246+260+449+504)
+Yes<-c(175+178+189+195+195+201+227+231+279)
+Total<-c(3424)
+
+
+t.test(Screentime~Worked,data=Screentime,alternative="two.sided")
+
+  
+```
+Since the p-value, 0.2381 is greater than 0.05, we fail to reject the null hypothesis. There is not enough evidence to support the claim that the mean Screentime on days not at work is more than the mean Screentime on days at work. 
+
+
+
